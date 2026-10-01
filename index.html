@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome | North Star Bakery</title>
+    <meta name="description" content="North Star Bakery is a neighborhood bakery on Lark Street in Riverbend, MN, baking naturally leavened breads, seasonal pastries, and celebration cakes by hand.">
+    <link rel="icon" type="image/png" href="images/bakery-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Nunito+Sans:wght@400;700;800&display=swap">
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="index.html">
+          <img src="images/bakery-logo.png" width="300" height="300" alt="North Star Bakery emblem with a north star above a loaf of bread">
+          <span>North Star Bakery</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="container">
+      <section class="hero split" aria-labelledby="welcome-heading">
+        <div>
+          <p class="eyebrow">Neighborhood bakery · Riverbend, MN</p>
+          <h1 id="welcome-heading">Welcome to North Star Bakery</h1>
+          <p class="lead">A neighborhood bakery for local customers, commuters, families, and anyone planning a table worth gathering around. We mill, mix, and bake by hand so you can take home bread that still smells like the oven.</p>
+          <div class="button-row">
+            <a class="button" href="contact.html">Pre-order for pickup</a>
+            <a class="button button--outline" href="products.html">See breads and prices</a>
+          </div>
+        </div>
+        <img class="photo" src="images/bakery-storefront.jpg" width="1200" height="675" alt="The North Star Bakery storefront on Lark Street at golden hour, with warm light in the windows and bread on the shelves">
+      </section>
+
+      <section class="section" aria-labelledby="known-heading">
+        <h2 id="known-heading">What we are known for</h2>
+        <div class="card-row">
+          <div class="card">
+            <h3>Naturally leavened breads</h3>
+            <p>Overnight country loaves, seeded rye, and baguettes mixed in small batches.</p>
+          </div>
+          <div class="card">
+            <h3>Seasonal pastries</h3>
+            <p>Butter-laminated croissants, morning buns, and fruit tarts that follow the market.</p>
+          </div>
+          <div class="card">
+            <h3>Celebration cakes</h3>
+            <p>Layer cakes for birthdays, showers, and the quiet Tuesday that still deserves dessert.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section split split--reverse" aria-labelledby="featured-heading">
+        <div>
+          <p class="eyebrow">Featured item of the week</p>
+          <h2 id="featured-heading">Mixed berry tart</h2>
+          <p>A crisp butter shell filled with raspberries and blueberries cooked down with a little lemon, finished with a dusting of sugar. Pair it with a butter croissant laminated by hand that morning. Available Wednesday through Sunday, while it lasts.</p>
+          <p><a href="products.html">See all pastries and prices</a></p>
+        </div>
+        <picture>
+          <source media="(min-width: 800px)" srcset="images/bakery-feature-large.jpg" width="1400" height="788">
+          <img class="photo" src="images/bakery-feature-small.jpg" width="800" height="800" loading="lazy" alt="Golden butter croissants and mixed berry tarts from this week's pastry case">
+        </picture>
+      </section>
+
+      <div class="section split split--top">
+        <section aria-labelledby="audio-heading">
+          <h2 id="audio-heading">A short welcome</h2>
+          <p>Press play for a greeting from the shop.</p>
+          <audio controls preload="none">
+            <source src="media/bakery-welcome.mp3" type="audio/mpeg">
+            Your browser does not support the audio element. Please visit North Star Bakery at 18 Lark Street in Riverbend, or call (555) 014-2218 to hear about today's breads and to place a pre-order.
+          </audio>
+        </section>
+        <section aria-labelledby="hours-heading">
+          <h2 id="hours-heading">Hours and location</h2>
+          <address>
+            18 Lark Street<br>
+            Riverbend, MN 55401
+          </address>
+          <ul class="hours">
+            <li><span>Tuesday – Friday</span> <span>7:00 a.m. – 6:00 p.m.</span></li>
+            <li><span>Saturday</span> <span>8:00 a.m. – 4:00 p.m.</span></li>
+            <li><span>Sunday</span> <span>8:00 a.m. – 1:00 p.m.</span></li>
+            <li><span>Monday</span> <span>Closed</span></li>
+          </ul>
+          <a class="button" href="contact.html">Pre-order or inquire</a>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-columns">
+          <div>
+            <p class="footer-heading">North Star Bakery</p>
+            <address>
+              18 Lark Street<br>
+              Riverbend, MN 55401<br>
+              <a href="tel:+15550142218">(555) 014-2218</a>
+            </address>
+          </div>
+          <div>
+            <p class="footer-heading">Hours</p>
+            <p>Tuesday – Friday: 7:00 a.m. – 6:00 p.m.<br>
+            Saturday: 8:00 a.m. – 4:00 p.m.<br>
+            Sunday: 8:00 a.m. – 1:00 p.m.<br>
+            Monday: Closed</p>
+          </div>
+          <nav aria-label="Footer">
+            <p class="footer-heading">Explore</p>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="products.html">Products</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+        <p class="copyright">© 2026 North Star Bakery. Baked daily at 18 Lark Street.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,673 @@
+/* ==========================================================================
+   North Star Bakery: main stylesheet
+   Mobile-first: base styles target small screens, and the media queries at
+   the end of the file adjust the layout for tablets and desktops.
+   ========================================================================== */
+
+/* 1. Global box sizing
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Design tokens
+   Four brand colors, taken from the logo and storefront photo, plus white as
+   a neutral surface. Two font families: Lora for headings and Nunito Sans
+   for body text.
+   -------------------------------------------------------------------------- */
+:root {
+  --color-cream: #f5eddb;   /* page background, same as the logo background */
+  --color-ink: #3a2a1e;     /* body text and footer background */
+  --color-brick: #9c4a2c;   /* links, buttons, active states */
+  --color-wheat: #d9a441;   /* decorative borders, text on dark footer */
+  --color-surface: rgba(255, 255, 255, 0.6);
+  --color-line: rgba(58, 42, 30, 0.35);
+
+  --font-heading: "Lora", Georgia, "Times New Roman", serif;
+  --font-body: "Nunito Sans", "Segoe UI", Arial, sans-serif;
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+
+  --radius: 0.75rem;
+  --max-width: 72rem;
+}
+
+/* 3. Base elements
+   -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  margin: 0 0 var(--space-sm);
+}
+
+h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+p {
+  margin: 0 0 var(--space-sm);
+  max-width: 65ch;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--color-brick);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brick);
+  outline-offset: 3px;
+}
+
+address {
+  margin-bottom: var(--space-sm);
+  font-style: normal;
+}
+
+/* 4. Layout helpers
+   -------------------------------------------------------------------------- */
+.container {
+  width: min(100% - 2rem, var(--max-width));
+  margin-inline: auto;
+}
+
+/* Hidden until a keyboard user tabs to it. */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-sm);
+  z-index: 10;
+  padding: var(--space-xs) var(--space-sm);
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* 5. Header and navigation
+   -------------------------------------------------------------------------- */
+.site-header {
+  border-bottom: 3px solid var(--color-wheat);
+}
+
+.site-header .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding-block: var(--space-sm);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+/* The logo is cropped to a round badge so its square background edge never shows. */
+.brand img,
+.logo-mark {
+  border: 2px solid var(--color-wheat);
+  border-radius: 50%;
+}
+
+.brand img {
+  width: 64px;
+  height: 64px;
+}
+
+.brand span {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  display: block;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  color: var(--color-ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  background-color: var(--color-surface);
+  color: var(--color-brick);
+}
+
+.site-nav a[aria-current="page"] {
+  background-color: var(--color-brick);
+  color: var(--color-cream);
+}
+
+/* 6. Buttons
+   -------------------------------------------------------------------------- */
+.button,
+button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-brick);
+  border-radius: 999px;
+  background-color: var(--color-brick);
+  color: var(--color-cream);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover,
+button:hover {
+  border-color: var(--color-ink);
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+}
+
+.button--outline {
+  background-color: transparent;
+  color: var(--color-brick);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+/* 7. Page sections
+   -------------------------------------------------------------------------- */
+main {
+  padding-block: var(--space-lg);
+}
+
+.section {
+  padding-block: var(--space-lg);
+  border-top: 2px solid var(--color-wheat);
+}
+
+/* Opening block of each page, above the first divider. */
+.hero {
+  padding-bottom: var(--space-lg);
+}
+
+.lead {
+  font-size: 1.1875rem;
+}
+
+/* Small label above a heading, e.g. "Featured item of the week". */
+.eyebrow {
+  margin-bottom: var(--space-xs);
+  color: var(--color-brick);
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Two-part rows: text beside media. Stacked on mobile. */
+.split {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Rows of cards. Stacked on mobile. */
+.card-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.card {
+  padding: var(--space-md);
+  border-top: 4px solid var(--color-wheat);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+}
+
+.card h2 {
+  font-size: 1.5rem;
+}
+
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+/* 8. Images and media
+   -------------------------------------------------------------------------- */
+.rounded {
+  border-radius: var(--radius);
+}
+
+.photo {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: 0 0.75rem 1.5rem rgba(58, 42, 30, 0.18);
+}
+
+figure {
+  margin: 0;
+}
+
+figcaption {
+  margin-top: var(--space-sm);
+  padding-left: var(--space-sm);
+  border-left: 4px solid var(--color-wheat);
+  font-style: italic;
+}
+
+audio {
+  width: 100%;
+  margin-top: var(--space-xs);
+}
+
+video {
+  width: 100%;
+  border-radius: var(--radius);
+  background-color: var(--color-ink);
+}
+
+/* 9. Hours list (home and contact pages)
+   -------------------------------------------------------------------------- */
+.hours {
+  margin: 0 0 var(--space-md);
+  padding: 0;
+  list-style: none;
+  max-width: 28rem;
+}
+
+.hours li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding-block: 0.4rem;
+  border-bottom: 1px dashed var(--color-line);
+}
+
+.hours li span:first-child {
+  font-weight: 700;
+}
+
+/* 10. Products page
+   -------------------------------------------------------------------------- */
+.price-range {
+  display: inline-block;
+  margin-bottom: var(--space-sm);
+  padding: 0.2rem 0.75rem;
+  border: 1px solid var(--color-brick);
+  border-radius: 999px;
+  color: var(--color-brick);
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.price-list {
+  margin: 0 0 var(--space-sm);
+  padding: 0;
+  list-style: none;
+}
+
+.price-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding-block: 0.45rem;
+  border-bottom: 1px dashed var(--color-line);
+}
+
+.price-list .price {
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+/* 11. About page
+   -------------------------------------------------------------------------- */
+.role {
+  margin-bottom: var(--space-xs);
+  color: var(--color-brick);
+  font-weight: 700;
+}
+
+.logo-mark {
+  width: 200px;
+  margin-inline: auto;
+}
+
+/* 12. Contact form
+   -------------------------------------------------------------------------- */
+.order-form fieldset {
+  margin: 0 0 var(--space-md);
+  padding: var(--space-md);
+  border: 1px solid var(--color-wheat);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+}
+
+.order-form legend {
+  padding-inline: var(--space-xs);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Nested fieldset for the radio group. */
+.order-form fieldset fieldset {
+  padding: var(--space-sm);
+  background-color: transparent;
+}
+
+.order-form fieldset fieldset legend {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.field {
+  margin-bottom: var(--space-sm);
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+}
+
+.hint {
+  font-weight: 400;
+  font-size: 0.9375rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--color-line);
+  border-radius: 0.5rem;
+  background-color: #fff;
+  color: var(--color-ink);
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  outline: 3px solid var(--color-wheat);
+  outline-offset: 0;
+  border-color: var(--color-brick);
+}
+
+/* Only flag a field after the user has interacted with it. */
+input:user-invalid,
+textarea:user-invalid {
+  border: 2px solid var(--color-brick);
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--color-brick);
+}
+
+.form-status {
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-left: 4px solid var(--color-brick);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  font-weight: 700;
+}
+
+.info-panel {
+  padding: var(--space-md);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  border-top: 4px solid var(--color-wheat);
+}
+
+.info-panel h2 {
+  font-size: 1.5rem;
+}
+
+.info-panel address {
+  margin-bottom: var(--space-md);
+}
+
+/* 13. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  padding-block: var(--space-lg) var(--space-md);
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+}
+
+.footer-columns {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.footer-heading {
+  margin-bottom: var(--space-xs);
+  color: var(--color-wheat);
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.site-footer a {
+  color: var(--color-cream);
+}
+
+.site-footer a:hover {
+  color: var(--color-wheat);
+}
+
+.site-footer :focus-visible {
+  outline-color: var(--color-wheat);
+}
+
+.footer-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.copyright {
+  margin: var(--space-lg) 0 0;
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(245, 237, 219, 0.25);
+  font-size: 0.875rem;
+  max-width: none;
+}
+
+/* 14. Tablet: 640px and up
+   -------------------------------------------------------------------------- */
+@media (min-width: 640px) {
+  h1 {
+    font-size: 2.75rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .card-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    flex: 1 1 16rem;
+  }
+
+  .site-nav ul {
+    gap: var(--space-xs);
+  }
+
+  .site-nav a {
+    padding-inline: 1rem;
+  }
+
+  .footer-columns {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .radio-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+}
+
+/* 15. Desktop: 900px and up
+   -------------------------------------------------------------------------- */
+@media (min-width: 900px) {
+  h1 {
+    font-size: 3.25rem;
+  }
+
+  main {
+    padding-block: var(--space-xl);
+  }
+
+  .section {
+    padding-block: var(--space-xl);
+  }
+
+  /* Header: logo on the left, navigation on the right. */
+  .site-header .container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .brand img {
+    width: 72px;
+    height: 72px;
+  }
+
+  /* Text and media sit side by side. */
+  .split {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+
+  .split > * {
+    flex: 1 1 0;
+    min-width: 0; /* lets images shrink inside the row */
+  }
+
+  .split--reverse {
+    flex-direction: row-reverse;
+  }
+
+  /* Keep the logo badge at its own size instead of half the row. */
+  .split > .logo-mark {
+    flex: 0 0 220px;
+    width: 220px;
+  }
+
+  .split--top {
+    align-items: flex-start;
+  }
+
+  /* Contact page: wider form beside a narrower info panel. */
+  .contact-layout > :first-child {
+    flex: 2 1 0;
+  }
+
+  .contact-layout > :last-child {
+    flex: 1 1 0;
+    position: sticky;
+    top: var(--space-md);
+  }
+}
+
+/* Respect users who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

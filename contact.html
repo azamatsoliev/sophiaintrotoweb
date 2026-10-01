@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact | North Star Bakery</title>
+    <meta name="description" content="Request a pre-order, ask a question, or start a cake inquiry with North Star Bakery. Location, hours, and pickup details for 18 Lark Street, Riverbend, MN.">
+    <link rel="icon" type="image/png" href="images/bakery-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Nunito+Sans:wght@400;700;800&display=swap">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/form.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="index.html">
+          <img src="images/bakery-logo.png" width="300" height="300" alt="North Star Bakery emblem with a north star above a loaf of bread">
+          <span>North Star Bakery</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" aria-current="page">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="container">
+      <div class="hero">
+        <p class="eyebrow">Pickup at 18 Lark Street</p>
+        <h1>Pre-order and inquiries</h1>
+        <p class="lead">Use this form to request a pre-order, ask a question, or start a cake conversation. We reply within one business day. Pickup is at the shop. We do not deliver.</p>
+      </div>
+
+      <div class="section split split--top contact-layout">
+        <form class="order-form" action="#" method="post">
+          <fieldset>
+            <legend>Your contact details</legend>
+            <div class="field">
+              <label for="full-name">Full name</label>
+              <input type="text" id="full-name" name="full-name" autocomplete="name" required minlength="2" maxlength="60" pattern="[A-Za-z][A-Za-z' \-]{1,59}" title="Please enter a name using letters, spaces, apostrophes, or hyphens.">
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone <span class="hint">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="555-014-2218" title="Use the format 555-014-2218.">
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Pre-order or inquiry</legend>
+            <div class="field">
+              <label for="pickup-date">Pickup date</label>
+              <input type="date" id="pickup-date" name="pickup-date" required>
+            </div>
+            <fieldset>
+              <legend>Request type</legend>
+              <div class="radio-group">
+                <label><input type="radio" name="request-type" value="pre-order" required> Pre-order</label>
+                <label><input type="radio" name="request-type" value="general"> General question</label>
+                <label><input type="radio" name="request-type" value="event"> Event or cake inquiry</label>
+              </div>
+            </fieldset>
+            <div class="field">
+              <label for="item-details">Item details</label>
+              <textarea id="item-details" name="item-details" required minlength="8" rows="4" placeholder="Example: two country loaves and a six-inch chocolate cake"></textarea>
+            </div>
+            <div class="field">
+              <label for="allergy-notes">Allergy notes <span class="hint">(if applicable)</span></label>
+              <textarea id="allergy-notes" name="allergy-notes" rows="3" placeholder="Nuts, dairy, gluten, or other notes we should know"></textarea>
+            </div>
+          </fieldset>
+
+          <button type="submit">Send request</button>
+          <p id="form-status" class="form-status" role="status" tabindex="-1" hidden></p>
+        </form>
+
+        <section class="info-panel" aria-labelledby="location-heading">
+          <h2 id="location-heading">Location</h2>
+          <address>
+            North Star Bakery<br>
+            18 Lark Street<br>
+            Riverbend, MN 55401<br>
+            <a href="tel:+15550142218">(555) 014-2218</a><br>
+            <a href="mailto:hello@northstarbakery.example">hello@northstarbakery.example</a>
+          </address>
+          <h2>Hours of operation</h2>
+          <ul class="hours">
+            <li><span>Tuesday – Friday</span> <span>7:00 a.m. – 6:00 p.m.</span></li>
+            <li><span>Saturday</span> <span>8:00 a.m. – 4:00 p.m.</span></li>
+            <li><span>Sunday</span> <span>8:00 a.m. – 1:00 p.m.</span></li>
+            <li><span>Monday</span> <span>Closed</span></li>
+          </ul>
+          <p>Street parking is available on Lark. The shop has a step-free entrance and a counter at seated height.</p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-columns">
+          <div>
+            <p class="footer-heading">North Star Bakery</p>
+            <address>
+              18 Lark Street<br>
+              Riverbend, MN 55401<br>
+              <a href="tel:+15550142218">(555) 014-2218</a>
+            </address>
+          </div>
+          <div>
+            <p class="footer-heading">Hours</p>
+            <p>Tuesday – Friday: 7:00 a.m. – 6:00 p.m.<br>
+            Saturday: 8:00 a.m. – 4:00 p.m.<br>
+            Sunday: 8:00 a.m. – 1:00 p.m.<br>
+            Monday: Closed</p>
+          </div>
+          <nav aria-label="Footer">
+            <p class="footer-heading">Explore</p>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="products.html">Products</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+        <p class="copyright">© 2026 North Star Bakery. Baked daily at 18 Lark Street.</p>
+      </div>
+    </footer>
+  </body>
+</html>
