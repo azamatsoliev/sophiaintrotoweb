@@ -2,7 +2,7 @@
 
 A multipage website for North Star Bakery, a fictional neighborhood bakery at 18 Lark Street in Riverbend, MN. It was built for the Intro to Web Development course.
 
-**Live site:** https://azamatsoliev.github.io/north-star-bakery/
+**Live site:** https://azamatsoliev.github.io/sophiaintrotoweb/
 
 ## Pages
 
@@ -16,7 +16,7 @@ A multipage website for North Star Bakery, a fictional neighborhood bakery at 18
 ## Project structure
 
 ```
-north-star-bakery/
+sophiaintrotoweb/
 ├── index.html
 ├── products.html
 ├── about.html
