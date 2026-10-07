@@ -1,0 +1,6 @@
+# Store text files with LF line endings, and treat media as binary.
+* text=auto eol=lf
+*.jpg binary
+*.png binary
+*.mp3 binary
+*.mp4 binary

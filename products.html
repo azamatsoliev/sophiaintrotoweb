@@ -1,15 +1,20 @@
 <!DOCTYPE html>
+<!-- North Star Bakery website | Author: Azamat Soliev -->
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Products | North Star Bakery</title>
     <meta name="description" content="Breads, pastries, and celebration cakes from North Star Bakery, with pricing for in-store pickup. Send a pre-order request to hold your favorites.">
+    <meta name="author" content="Azamat Soliev">
     <link rel="icon" type="image/png" href="images/bakery-logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Nunito+Sans:wght@400;700;800&display=swap">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/menu-data.js" defer></script>
+    <script src="js/preorder-list.js" defer></script>
+    <script src="js/products.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -35,9 +40,10 @@
         <div>
           <p class="eyebrow">Priced for pickup</p>
           <h1 id="products-heading">Breads, pastries, and cakes</h1>
-          <p class="lead">Everything is priced for pickup at the shop. There is no online checkout. Browse the ranges below, then send a pre-order so we can hold your favorites at the counter.</p>
+          <p class="lead">Everything is priced for pickup at the shop. There is no online checkout. Build a list from the menu below, then send a pre-order so we can hold your favorites at the counter.</p>
           <div class="button-row">
-            <a class="button" href="contact.html">Send a pre-order request</a>
+            <a class="button" href="#menu">Build your pre-order list</a>
+            <a class="button button--outline" href="contact.html">Send a request</a>
           </div>
         </div>
         <figure>
@@ -46,42 +52,40 @@
         </figure>
       </section>
 
-      <div class="section card-row">
-        <section class="card" aria-labelledby="breads-heading">
-          <h2 id="breads-heading">Breads</h2>
-          <p class="price-range">Pricing range: $4 – $12</p>
-          <p>Loaves are baked overnight and ready when the door opens. Call ahead if you need more than four of one kind.</p>
-          <ul class="price-list">
-            <li><span>Country loaf, naturally leavened</span> <span class="price">$9</span></li>
-            <li><span>Seeded rye</span> <span class="price">$10</span></li>
-            <li><span>Baguette</span> <span class="price">$4</span></li>
-            <li><span>Honeyed rye with fennel</span> <span class="price">$12</span></li>
-          </ul>
-        </section>
-        <section class="card" aria-labelledby="pastries-heading">
-          <h2 id="pastries-heading">Pastries</h2>
-          <p class="price-range">Pricing range: $4.50 – $7</p>
-          <p>Pastries are mixed in small trays. Weekend favorites often sell through by late morning.</p>
-          <ul class="price-list">
-            <li><span>Butter croissant</span> <span class="price">$4.50</span></li>
-            <li><span>Morning bun</span> <span class="price">$5</span></li>
-            <li><span>Mixed berry tart, featured this week</span> <span class="price">$6</span></li>
-            <li><span>Cinnamon roll, Saturdays</span> <span class="price">$5.50</span></li>
-            <li><span>Almond croissant</span> <span class="price">$7</span></li>
-          </ul>
-        </section>
-        <section class="card" aria-labelledby="cakes-heading">
-          <h2 id="cakes-heading">Cakes</h2>
-          <p class="price-range">Pricing range: $38 – $85</p>
-          <p>Cake orders need three days' notice. Share flavor, size, and any allergy notes on the <a href="contact.html">pre-order form</a>.</p>
-          <ul class="price-list">
-            <li><span>Six-inch layer cake</span> <span class="price">from $38</span></li>
-            <li><span>Eight-inch layer cake</span> <span class="price">from $52</span></li>
-            <li><span>Custom celebration cake</span> <span class="price">from $65</span></li>
-            <li><span>Sheet cake for gatherings</span> <span class="price">from $85</span></li>
-          </ul>
-        </section>
-      </div>
+      <section class="section" id="menu" aria-labelledby="menu-heading">
+        <p class="eyebrow">Interactive menu</p>
+        <h2 id="menu-heading">Build your pre-order list</h2>
+        <p>Choose a category, add what you'd like, and set how many. Your list is saved on this device, so it is still here when you come back, and it fills in the pre-order form for you.</p>
+
+        <div class="menu-toolbar">
+          <div class="filter-group" id="menu-filters" role="group" aria-label="Show menu category"></div>
+          <a class="list-link" href="#preorder-list">Your list <span class="list-count" id="list-count">0</span></a>
+        </div>
+        <p class="visually-hidden" id="menu-announcer" aria-live="polite"></p>
+
+        <div class="menu-layout">
+          <div class="menu-categories" id="menu-categories">
+            <noscript>
+              <p class="card">The interactive menu needs JavaScript. Call <a href="tel:+15550142218">(555) 014-2218</a> for today's breads, pastries, and cake prices, or send a request on the <a href="contact.html">pre-order form</a>.</p>
+            </noscript>
+          </div>
+
+          <aside class="preorder-panel" id="preorder-list" aria-labelledby="preorder-heading">
+            <h3 id="preorder-heading" tabindex="-1">Your pre-order list</h3>
+            <p class="restore-note" id="restore-note" hidden></p>
+            <p class="preorder-empty" id="preorder-empty">Your list is empty. Add items from the menu to start a pre-order.</p>
+            <ul class="preorder-items" id="preorder-items"></ul>
+            <p class="preorder-total" id="preorder-total" hidden></p>
+            <div class="preorder-actions" id="preorder-actions" hidden>
+              <p class="hint">Up to 4 of each item. Final prices are confirmed at pickup.</p>
+              <div class="button-row">
+                <a class="button" href="contact.html#preorder-form">Use this list on the pre-order form</a>
+                <button type="button" class="button button--outline" id="preorder-clear">Clear list</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
 
       <section class="section split split--reverse" aria-labelledby="bench-heading">
         <div>

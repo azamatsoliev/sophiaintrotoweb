@@ -1,16 +1,20 @@
 <!DOCTYPE html>
+<!-- North Star Bakery website | Author: Azamat Soliev -->
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Contact | North Star Bakery</title>
     <meta name="description" content="Request a pre-order, ask a question, or start a cake inquiry with North Star Bakery. Location, hours, and pickup details for 18 Lark Street, Riverbend, MN.">
+    <meta name="author" content="Azamat Soliev">
     <link rel="icon" type="image/png" href="images/bakery-logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Nunito+Sans:wght@400;700;800&display=swap">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/form.js" defer></script>
+    <script src="js/menu-data.js" defer></script>
+    <script src="js/preorder-list.js" defer></script>
+    <script src="js/contact-form.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -39,20 +43,23 @@
       </div>
 
       <div class="section split split--top contact-layout">
-        <form class="order-form" action="#" method="post">
+        <form class="order-form" id="preorder-form" action="#" method="post">
           <fieldset>
             <legend>Your contact details</legend>
             <div class="field">
               <label for="full-name">Full name</label>
-              <input type="text" id="full-name" name="full-name" autocomplete="name" required minlength="2" maxlength="60" pattern="[A-Za-z][A-Za-z' \-]{1,59}" title="Please enter a name using letters, spaces, apostrophes, or hyphens.">
+              <input type="text" id="full-name" name="full-name" autocomplete="name" required minlength="2" maxlength="60" pattern="\p{L}[\p{L}' .\-]{1,59}" title="Please enter a name using letters, spaces, apostrophes, periods, or hyphens." aria-describedby="full-name-error">
+              <p class="field-error" id="full-name-error"></p>
             </div>
             <div class="field">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" autocomplete="email" required>
+              <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="email-error">
+              <p class="field-error" id="email-error"></p>
             </div>
             <div class="field">
               <label for="phone">Phone <span class="hint">(optional)</span></label>
-              <input type="tel" id="phone" name="phone" autocomplete="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="555-014-2218" title="Use the format 555-014-2218.">
+              <input type="tel" id="phone" name="phone" autocomplete="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="555-014-2218" title="Use the format 555-014-2218." aria-describedby="phone-error">
+              <p class="field-error" id="phone-error"></p>
             </div>
           </fieldset>
 
@@ -60,23 +67,30 @@
             <legend>Pre-order or inquiry</legend>
             <div class="field">
               <label for="pickup-date">Pickup date</label>
-              <input type="date" id="pickup-date" name="pickup-date" required>
+              <p class="field-hint" id="pickup-date-hint">Tuesday through Sunday. Cakes need 3 days' notice.</p>
+              <input type="date" id="pickup-date" name="pickup-date" required aria-describedby="pickup-date-hint pickup-date-error">
+              <p class="field-error" id="pickup-date-error"></p>
             </div>
-            <fieldset>
+            <fieldset class="field" aria-describedby="request-type-error">
               <legend>Request type</legend>
               <div class="radio-group">
                 <label><input type="radio" name="request-type" value="pre-order" required> Pre-order</label>
                 <label><input type="radio" name="request-type" value="general"> General question</label>
                 <label><input type="radio" name="request-type" value="event"> Event or cake inquiry</label>
               </div>
+              <p class="field-error" id="request-type-error"></p>
             </fieldset>
+            <p class="saved-list-note" id="saved-list-note" hidden>We added the pre-order list you saved on the <a href="products.html#menu">Products page</a>. You can edit it below before sending.</p>
             <div class="field">
               <label for="item-details">Item details</label>
-              <textarea id="item-details" name="item-details" required minlength="8" rows="4" placeholder="Example: two country loaves and a six-inch chocolate cake"></textarea>
+              <textarea id="item-details" name="item-details" required minlength="8" rows="5" placeholder="Example: two country loaves and a six-inch chocolate cake" aria-describedby="item-details-count item-details-error"></textarea>
+              <p class="char-count" id="item-details-count">0 / 800 characters</p>
+              <p class="field-error" id="item-details-error"></p>
             </div>
             <div class="field">
               <label for="allergy-notes">Allergy notes <span class="hint">(if applicable)</span></label>
-              <textarea id="allergy-notes" name="allergy-notes" rows="3" placeholder="Nuts, dairy, gluten, or other notes we should know"></textarea>
+              <textarea id="allergy-notes" name="allergy-notes" rows="3" placeholder="Nuts, dairy, gluten, or other notes we should know" aria-describedby="allergy-notes-error"></textarea>
+              <p class="field-error" id="allergy-notes-error"></p>
             </div>
           </fieldset>
 

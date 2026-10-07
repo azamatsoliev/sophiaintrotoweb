@@ -1,5 +1,6 @@
 /* ==========================================================================
    North Star Bakery: main stylesheet
+   Author: Azamat Soliev
    Mobile-first: base styles target small screens, and the media queries at
    the end of the file adjust the layout for tablets and desktops.
    ========================================================================== */
@@ -128,6 +129,19 @@ address {
 
 .skip-link:focus {
   top: 0;
+}
+
+/* Read by screen readers but not shown on screen (used for live updates). */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* 5. Header and navigation
@@ -363,23 +377,251 @@ video {
   font-weight: 700;
 }
 
-.price-list {
-  margin: 0 0 var(--space-sm);
+/* Menu beside the list panel: stacked on phones, side by side on desktops. */
+.menu-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Interactive menu: filter buttons and the "Your list" link. */
+.menu-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-block: var(--space-md);
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.filter-button,
+.add-button,
+.qty-button {
+  border: 2px solid var(--color-brick);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--color-brick);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filter-button {
+  padding: 0.4rem 1rem;
+}
+
+.filter-button[aria-pressed="true"] {
+  background-color: var(--color-brick);
+  color: var(--color-cream);
+}
+
+.filter-button:hover,
+.add-button:hover,
+.qty-button:hover {
+  border-color: var(--color-ink);
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+}
+
+.list-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-weight: 700;
+}
+
+.list-count {
+  min-width: 1.75rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background-color: var(--color-brick);
+  color: var(--color-cream);
+  text-align: center;
+}
+
+/* Menu cards are stacked, so they must not take the row sizing of .card. */
+.menu-categories {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.menu-categories .card {
+  flex: none;
+}
+
+.menu-list {
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.price-list li {
+.menu-item {
   display: flex;
-  justify-content: space-between;
-  gap: var(--space-sm);
-  padding-block: 0.45rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs) var(--space-sm);
+  padding: 0.6rem 0.5rem;
   border-bottom: 1px dashed var(--color-line);
 }
 
-.price-list .price {
+.menu-item.is-in-list {
+  border-left: 4px solid var(--color-wheat);
+  background-color: var(--color-surface);
+}
+
+.menu-item__text {
+  display: flex;
+  flex: 1 1 10rem;
+  flex-direction: column;
+}
+
+.menu-item__name {
+  font-weight: 700;
+}
+
+.menu-item__note {
+  font-size: 0.9375rem;
+}
+
+.menu-item__status {
+  color: var(--color-brick);
+  font-size: 0.875rem;
+  font-weight: 800;
+}
+
+.menu-item__status:empty {
+  display: none;
+}
+
+.price {
   flex-shrink: 0;
   font-weight: 700;
+}
+
+.add-button {
+  flex-shrink: 0;
+  min-width: 7.5rem;
+  padding: 0.35rem 0.9rem;
+}
+
+.add-button[aria-disabled="true"] {
+  border-color: var(--color-line);
+  background-color: transparent;
+  color: var(--color-ink);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* The pre-order list panel. */
+.preorder-panel {
+  padding: var(--space-md);
+  border-top: 4px solid var(--color-wheat);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+}
+
+.preorder-panel h3 {
+  font-size: 1.5rem;
+}
+
+.restore-note,
+.saved-list-note {
+  padding: var(--space-xs) var(--space-sm);
+  border-left: 4px solid var(--color-wheat);
+  background-color: var(--color-surface);
+  font-weight: 700;
+}
+
+.preorder-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.preorder-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs) var(--space-sm);
+  padding-block: 0.6rem;
+  border-bottom: 1px dashed var(--color-line);
+}
+
+.preorder-item__name {
+  flex: 1 1 100%;
+  font-weight: 700;
+}
+
+.qty-control {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.qty-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.qty-button:disabled {
+  border-color: var(--color-line);
+  background-color: transparent;
+  color: var(--color-ink);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.qty-value {
+  min-width: 1.5rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.preorder-item__subtotal {
+  margin-left: auto;
+  font-weight: 700;
+}
+
+/* "Remove" reads as a text link, not a round button. */
+.qty-button.remove-button {
+  width: auto;
+  height: auto;
+  padding: 0.25rem 0;
+  font-size: 1rem;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--color-brick);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.qty-button.remove-button:hover {
+  background-color: transparent;
+  color: var(--color-ink);
+}
+
+.preorder-total {
+  margin-block: var(--space-sm);
+  font-size: 1.125rem;
+  font-weight: 800;
+}
+
+.preorder-actions .button-row {
+  margin-top: var(--space-sm);
 }
 
 /* 11. About page
@@ -464,10 +706,54 @@ textarea:focus {
   border-color: var(--color-brick);
 }
 
-/* Only flag a field after the user has interacted with it. */
-input:user-invalid,
-textarea:user-invalid {
+/* Without JavaScript, the browser flags fields the user has touched. With
+   JavaScript the form gets the novalidate attribute and the rules below
+   (aria-invalid and .field-error) take over. */
+.order-form:not([novalidate]) input:user-invalid,
+.order-form:not([novalidate]) textarea:user-invalid {
   border: 2px solid var(--color-brick);
+}
+
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border: 2px solid var(--color-brick);
+}
+
+.order-form fieldset.has-error {
+  border: 2px solid var(--color-brick);
+}
+
+.field-hint {
+  margin-bottom: 0.35rem;
+  font-size: 0.9375rem;
+}
+
+/* Error message under a field. Hidden while empty. */
+.field-error {
+  margin: 0.35rem 0 0;
+  color: var(--color-brick);
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.field-error::before {
+  content: "⚠ ";
+}
+
+.field-error:empty {
+  display: none;
+}
+
+.char-count {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  text-align: right;
+  max-width: none;
+}
+
+.char-count.is-over {
+  color: var(--color-brick);
+  font-weight: 800;
 }
 
 .radio-group {
@@ -496,6 +782,14 @@ input[type="radio"] {
   border-radius: var(--radius);
   background-color: var(--color-surface);
   font-weight: 700;
+}
+
+.form-status--error {
+  color: var(--color-brick);
+}
+
+.form-status--success {
+  border-left-color: var(--color-wheat);
 }
 
 .info-panel {
@@ -659,6 +953,24 @@ input[type="radio"] {
   }
 
   .contact-layout > :last-child {
+    flex: 1 1 0;
+    position: sticky;
+    top: var(--space-md);
+  }
+
+  /* Products page: menu on the left, pre-order list kept in view on the right. */
+  .menu-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-lg);
+  }
+
+  .menu-categories {
+    flex: 2 1 0;
+    min-width: 0;
+  }
+
+  .preorder-panel {
     flex: 1 1 0;
     position: sticky;
     top: var(--space-md);
