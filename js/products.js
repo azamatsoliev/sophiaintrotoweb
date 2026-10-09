@@ -159,13 +159,18 @@ function updateMenuButtons() {
     const atLimit = qty >= bakeryInfo.maxPerItem;
 
     // aria-disabled (instead of disabled) keeps keyboard focus on the button.
+    // Each aria-label starts with the button's visible text, so voice-control
+    // users can say what they see ("click Add one more").
     button.setAttribute("aria-disabled", String(atLimit));
     if (atLimit) {
       button.textContent = "Limit reached";
-      button.setAttribute("aria-label", `${item.name}: limit of ${bakeryInfo.maxPerItem} reached`);
-    } else {
-      button.textContent = qty === 0 ? "Add" : "Add one more";
+      button.setAttribute("aria-label", `Limit reached for ${item.name} (${bakeryInfo.maxPerItem} in your list)`);
+    } else if (qty === 0) {
+      button.textContent = "Add";
       button.setAttribute("aria-label", `Add ${item.name} to your pre-order list`);
+    } else {
+      button.textContent = "Add one more";
+      button.setAttribute("aria-label", `Add one more ${item.name}`);
     }
 
     row.classList.toggle("is-in-list", qty > 0);
