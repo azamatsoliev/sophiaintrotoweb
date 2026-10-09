@@ -93,7 +93,8 @@ function checkPickupDate(value) {
     return "That date has already passed. Choose today or a later date.";
   }
   if (daysAhead > bakeryInfo.maxDaysAhead) {
-    return `We take pre-orders up to ${bakeryInfo.maxDaysAhead} days ahead. Choose a date on or before ${formatDate(addDays(today, bakeryInfo.maxDaysAhead))}.`;
+    const latestDay = nearestOpenDay(addDays(today, bakeryInfo.maxDaysAhead), -1);
+    return `We take pre-orders up to ${bakeryInfo.maxDaysAhead} days ahead. Choose a date on or before ${formatDate(latestDay)}.`;
   }
   if (pickup.getDay() === bakeryInfo.closedDay) {
     return `We're closed on ${weekdayNames[bakeryInfo.closedDay]}s. Choose Tuesday through Sunday.`;
@@ -101,7 +102,8 @@ function checkPickupDate(value) {
 
   const noticeDays = getNoticeDays(itemDetails.value);
   if (daysAhead < noticeDays) {
-    return `Cakes need ${noticeDays} days' notice. Choose ${formatDate(addDays(today, noticeDays))} or later.`;
+    const earliestDay = nearestOpenDay(addDays(today, noticeDays), 1);
+    return `Cakes need ${noticeDays} days' notice. Choose ${formatDate(earliestDay)} or later.`;
   }
 
   const dayOnlyItem = findDayOnlyItem(itemDetails.value, pickup.getDay());
@@ -184,6 +186,16 @@ function getToday() {
 
 function addDays(date, days) {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
+}
+
+// Moves a date off the closed day (Monday), forward or backward one day at a
+// time, so suggested dates are always days the shop is open.
+function nearestOpenDay(date, step) {
+  let day = date;
+  while (day.getDay() === bakeryInfo.closedDay) {
+    day = addDays(day, step);
+  }
+  return day;
 }
 
 function daysBetween(start, end) {
